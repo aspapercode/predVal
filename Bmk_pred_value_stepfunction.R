@@ -178,9 +178,9 @@ output <- foreach(i_i = nsim1:nsim2, .packages = c("effects", "detectseparation"
   myData.pbo = SimDataStep1(N.pbo, cutpoint=cutpoint, p2=p2_plb, p1=p1_plb,distribution = distribution)
   data=cbind(rbind(myData.exp$data, myData.pbo$data), "trt"=c(rep(1, length(myData.exp$data$x)), rep(0, length(myData.pbo$data$x))))
   
-  #GaelleMK
-  res_GaelleMK_lin <- Linear(data, 0) #remove seed 
-  res_GaelleMK_lin_v <- unlist(res_GaelleMK_lin)
+  #AKSA
+  AKSA_lin <- Linear(data, 0) #remove seed 
+  res_AKSA_lin_v <- unlist(AKSA_lin)
   
   #cutoff
   res_onedata <- Cutoff_onedata(diff_thr,p_thr,pp_temp)
@@ -205,7 +205,7 @@ output <- foreach(i_i = nsim1:nsim2, .packages = c("effects", "detectseparation"
   res_lrt <- lrttest(data)
   res_lrt_v <- unlist(res_lrt)
   
-  out <- c(res_GaelleMK_lin_v,
+  out <- c(res_AKSA_lin_v,
            res_linbin_v, 
            res_gailsimon,
            res_roctest_v,
